@@ -61,7 +61,7 @@ module IceCube
     def self.ensure_time(time, reference = nil, date_eod = false)
       case time
       when DateTime
-        warn "IceCube: DateTime support is deprecated (please use Time) at: #{ caller[2] }"
+        #warn "IceCube: DateTime support is deprecated (please use Time) at: #{ caller[2] }"
         Time.local(time.year, time.month, time.day, time.hour, time.min, time.sec)
       when Date
         if date_eod
@@ -134,7 +134,7 @@ module IceCube
     def self.restore_deserialized_offset(time, orig_offset_str)
       return time if time.respond_to?(:time_zone) ||
                      time.getlocal(orig_offset_str).utc_offset == time.utc_offset
-      warn "IceCube: parsed Time from nonlocal TZ. Use ActiveSupport to fix DST at: #{ caller[0] }"
+      #warn "IceCube: parsed Time from nonlocal TZ. Use ActiveSupport to fix DST at: #{ caller[0] }"
       time.localtime(orig_offset_str)
     end
 
